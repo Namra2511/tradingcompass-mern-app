@@ -1,0 +1,54 @@
+version: 2
+
+updates:
+  # -------------------------------------------------------------
+  # NPM DEPENDENCIES
+  # -------------------------------------------------------------
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+    groups:
+      # Security updates group
+      npm-security-bump:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+      # Normal version updates group
+      npm-version-bump:
+        applies-to: version-updates
+        patterns:
+          - "*"
+
+    labels:
+      - "dependencies"
+      - "security"
+
+  # -------------------------------------------------------------
+  # GITHUB ACTIONS DEPENDENCIES
+  # -------------------------------------------------------------
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+    groups:
+      # Security updates group
+      github-security-bump:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+      # Normal version updates group
+      github-version-bump:
+        applies-to: version-updates
+        patterns:
+          - "*"
+
+    labels:
+      - "dependencies"
+      - "security"
